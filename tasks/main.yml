@@ -49,3 +49,5 @@
     cmd: php artisan migrate --force
   args:
     chdir: "{{ bookstack_content_dest }}"
+  changed_when: false
+  
