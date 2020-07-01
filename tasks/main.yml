@@ -1,2 +1,51 @@
 ---
+- name: Install requirements
+  package:
+    name: ["git", "composer"]
+    state: present
 
+- name: Check if bookstack git directories already exists
+  stat:
+    path: "{{ bookstack_separate_git_dir }}"
+  register: bookstack_git_dir
+
+- name: Clone bookstack git repository
+  git:
+    repo: "{{ bookstack_git_url }}"
+    dest: "{{ bookstack_content_dest }}"
+    version: "{{ bookstack_git_branch_version }}"
+    separate_git_dir: "{{ bookstack_separate_git_dir }}"
+    force: true
+  when: not bookstack_git_dir.stat.exists or bookstack_force_update
+
+- name: Composer install
+  composer:
+    command: install
+    no_dev: true
+    working_dir: "{{ bookstack_content_dest }}"
+  when: not bookstack_git_dir.stat.exists or bookstack_force_update
+
+- name: Change Bookstack directory owner
+  file:
+    path: "{{ bookstack_content_dest }}"
+    owner: "www-data"
+    group: "www-data"
+    recurse: true
+
+- name: Deploy .env file
+  template:
+    src: env.j2
+    owner: www-data
+    group: www-data
+    dest: "{{ bookstack_content_dest }}/.env"
+    mode: 0640
+  notify: Generate unique application key
+
+- name: Flush handlers
+  meta: flush_handlers
+
+- name: migrate database
+  command:
+    cmd: php artisan migrate --force
+  args:
+    chdir: "{{ bookstack_content_dest }}"

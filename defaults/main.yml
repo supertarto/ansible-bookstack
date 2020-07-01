@@ -1,2 +1,24 @@
 ---
+bookstack_force_update: false
+bookstack_separate_git_dir: /usr/local/bookstack-git
+bookstack_content_dest: /var/www/Bookstack
+bookstack_git_branch_version: release
+bookstack_git_url: https://github.com/BookStackApp/BookStack.git
 
+############
+# ENV FILE
+############
+bookstack_host: localhost
+bookstack_db_name: bookstackdb
+bookstack_db_user: bookstackuser
+bookstack_db_password: bookstackpassword
+
+bookstack_mail_driver: smtp
+bookstack_mail_from_name: BookStack
+bookstack_mail_from: bookstack@myentreprise.com
+
+bookstack_smtp_host: localhost
+bookstack_smtp_port: "1025"
+bookstack_smtp_username: "null"
+bookstack_smtp_password: "null"
+bookstack_smtp_encryption: "null"

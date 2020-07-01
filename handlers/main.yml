@@ -1,2 +1,6 @@
 ---
-
+- name: Generate unique application key
+  command:
+    cmd: php artisan key:generate --force
+  args:
+    chdir: "{{ bookstack_content_dest }}"

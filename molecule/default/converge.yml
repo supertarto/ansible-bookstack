@@ -2,4 +2,68 @@
 - name: Converge
   hosts: all
   roles:
-    - role: supertarto.
+    - role: supertarto.apache
+    - role: supertarto.php
+    - role: supertarto.mariadb
+    - role: supertarto.bookstack
+
+  pre_tasks:
+    - name: Update apt cache.
+      apt:
+        update_cache: true
+        cache_valid_time: 600
+      when: ansible_os_family == 'Debian'
+      changed_when: false
+  vars:
+    php_packages:
+      - php7.3
+      - php7.3-mysql
+      - php7.3-curl
+      - php7.3-pdo
+      - php7.3-xml
+      - php7.3-mbstring
+      - php7.3-gd
+      - php-tokenizer
+      - php7.3-tidy
+
+    bookstack_host: localhost
+    bookstack_db_name: bookstackdb
+    bookstack_db_user: bookstackuser
+    bookstack_db_password: bookstackpassword
+
+    apache_create_vhosts: true
+    apache_mods_enabled:
+      - rewrite
+
+    apache_vhosts_filename: "bookstack.conf"
+    apache_vhost_config:
+      - listen_ip: "*"
+        listen_port: 80
+        server_name: host1
+        documentroot: "/var/www/bookstack"
+        serveradmin: admin@localhost
+        custom_param: |
+          ErrorLog ${APACHE_LOG_DIR}/error.log
+          CustomLog ${APACHE_LOG_DIR}/access.log combined
+          LogLevel warn
+          Options +FollowSymLinks
+          RewriteEngine On
+          RewriteCond %{REQUEST_FILENAME} !-d
+          RewriteCond %{REQUEST_FILENAME} !-f
+          RewriteRule ^ index.php [L]
+        directory:
+          - path: "/var/www/bookstack"
+            config: |
+              AllowOverride All
+              Order deny,allow
+              allow from all
+
+    mariadb_use_dump_script: false
+    mariadb_databases:
+      - name: "{{ bookstack_db_name }}"
+
+    mariadb_users:
+      - name: "{{ bookstack_db_user }}"
+        host: "{{ bookstack_host }}"
+        password: "{{ bookstack_db_password }}"
+        priv: "{{ bookstack_db_name }}.*:SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER,CREATE TEMPORARY TABLES,LOCK TABLES"
