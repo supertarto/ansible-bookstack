@@ -50,4 +50,3 @@
   args:
     chdir: "{{ bookstack_content_dest }}"
   changed_when: false
-  
