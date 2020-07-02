@@ -1,5 +1,6 @@
 ---
 bookstack_force_update: false
+bookstack_force_env_update: false
 bookstack_separate_git_dir: /usr/local/bookstack-git
 bookstack_content_dest: /var/www/Bookstack
 bookstack_git_branch_version: release

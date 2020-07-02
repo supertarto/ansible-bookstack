@@ -32,6 +32,11 @@
     group: "www-data"
     recurse: true
 
+- name: Check if .env file already exists
+  stat:
+    path: "{{ bookstack_content_dest }}/.env"
+  register: bookstack_env_file
+
 - name: Deploy .env file
   template:
     src: env.j2
@@ -40,6 +45,7 @@
     dest: "{{ bookstack_content_dest }}/.env"
     mode: 0640
   notify: Generate unique application key
+  when: not bookstack_env_file.stat.exists or bookstack_force_env_update  
 
 - name: Flush handlers
   meta: flush_handlers
