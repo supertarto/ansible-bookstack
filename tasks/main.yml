@@ -45,7 +45,7 @@
     dest: "{{ bookstack_content_dest }}/.env"
     mode: 0640
   notify: Generate unique application key
-  when: not bookstack_env_file.stat.exists or bookstack_force_env_update  
+  when: not bookstack_env_file.stat.exists or bookstack_force_env_update
 
 - name: Flush handlers
   meta: flush_handlers
