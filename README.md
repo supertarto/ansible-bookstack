@@ -84,23 +84,23 @@ bookstack_smtp_encryption: "null"
       - listen_ip: "*"
         listen_port: 80
         server_name: host1
-        documentroot: "/var/www/bookstack"
+        documentroot: "/var/www/Bookstack/public"
         serveradmin: admin@localhost
         custom_param: |
           ErrorLog ${APACHE_LOG_DIR}/error.log
           CustomLog ${APACHE_LOG_DIR}/access.log combined
           LogLevel warn
-          Options +FollowSymLinks
-          RewriteEngine On
-          RewriteCond %{REQUEST_FILENAME} !-d
-          RewriteCond %{REQUEST_FILENAME} !-f
-          RewriteRule ^ index.php [L]
         directory:
-          - path: "/var/www/bookstack"
+          - path: "/var/www/Bookstack/public"
             config: |
               AllowOverride All
               Order deny,allow
               allow from all
+              Options +FollowSymLinks
+              RewriteEngine On
+              RewriteCond %{REQUEST_FILENAME} !-d
+              RewriteCond %{REQUEST_FILENAME} !-f
+              RewriteRule ^ index.php [L]
 
     mariadb_use_dump_script: false
     mariadb_databases:
