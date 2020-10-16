@@ -1,5 +1,5 @@
 # Ansible Bookstack
-[![Build Status](https://travis-ci.org/supertarto/ansible-bookstack.svg?branch=master)](https://travis-ci.org/supertarto/ansible-bookstack)
+[![Build Status](https://travis-ci.com/supertarto/ansible-bookstack.svg?branch=master)](https://travis-ci.com/supertarto/ansible-bookstack)
 
 Install and configure Bookstack with Ansible.
 
