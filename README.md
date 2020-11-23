@@ -1,6 +1,7 @@
 # Ansible Bookstack
-[![Build Status](https://travis-ci.com/supertarto/ansible-bookstack.svg?branch=master)](https://travis-ci.com/supertarto/ansible-bookstack)
+
 [![CI](https://github.com/supertarto/ansible-bookstack/workflows/CI/badge.svg?event=push)](https://github.com/supertarto/ansible-bookstack/actions?query=workflow%3ACI)
+
 Install and configure Bookstack with Ansible.
 
 ## Tested plateform
