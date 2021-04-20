@@ -42,7 +42,24 @@ bookstack_smtp_username: "null"
 bookstack_smtp_password: "null"
 bookstack_smtp_encryption: "null"
 ```
-
+Information about your LDAP.
+```yml
+bookstack_use_ldap_auth: false
+bookstack_ldap_server: "ldaps://example.com:636"
+bookstack_ldap_base_dn: "People,dc=example,dc=com"
+bookstack_ldap_bind_dn: "false"
+bookstack_ldap_bind_pw: "false"
+bookstack_ldap_user_filter: "(&(uid=${user}))"
+bookstack_ldap_version: "3"
+bookstack_ldap_id_attribute: "uid"
+bookstack_ldap_mail_attribute: "mail"
+bookstack_ldap_dn_attribute: "cn"
+bookstack_ldap_tls_force: "false"
+```
+Default locale
+```yml
+bookstack_lang: en
+```
 ## Examples
 ```yml
 - hosts: all
