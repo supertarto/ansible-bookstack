@@ -6,6 +6,7 @@ Install and configure Bookstack with Ansible.
 
 ## Tested plateform
 * Debian 10 (Buster)
+* Debian 11 (Bulleyes)
 
 ## Role variables
 Set this variable to true to force the application update or reinstallation.
