@@ -16,15 +16,15 @@
       changed_when: false
   vars:
     php_packages:
-      - php{{php_default_version_debian}}
-      - php{{php_default_version_debian}}-mysql
-      - php{{php_default_version_debian}}-curl
-      - php{{php_default_version_debian}}-pdo
-      - php{{php_default_version_debian}}-xml
-      - php{{php_default_version_debian}}-mbstring
-      - php{{php_default_version_debian}}-gd
-      - php-tokenizer
-      - php{{php_default_version_debian}}-tidy
+      - "php{{php_default_version_debian}}"
+      - "php{{php_default_version_debian}}-mysql"
+      - "php{{php_default_version_debian}}-curl"
+      - "php{{php_default_version_debian}}-pdo"
+      - "php{{php_default_version_debian}}-xml"
+      - "php{{php_default_version_debian}}-mbstring"
+      - "php{{php_default_version_debian}}-gd"
+      - "php-tokenizer"
+      - "php{{php_default_version_debian}}-tidy"
 
     bookstack_host: localhost
     bookstack_db_name: bookstackdb
