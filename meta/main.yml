@@ -3,7 +3,7 @@ galaxy_info:
   author: "Xavier Binois"
   description: "Install and configure Bookstack with Ansible"
   role_name: bookstack
-  namespace: "supertarto"  
+  namespace: "supertarto"
   license: "GNU General Public License v3.0"
   min_ansible_version: 2.8
 
@@ -11,6 +11,7 @@ galaxy_info:
     - name: "Debian"
       versions:
         - "buster"
+        - "bulleyes"
 
   galaxy_tags:
     - wiki
